@@ -1,0 +1,5 @@
+module Libimage [system] {
+	header "External/stb_image.h"
+	header "External/stb_image_write.h"
+	export *
+}
