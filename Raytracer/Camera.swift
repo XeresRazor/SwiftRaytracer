@@ -23,8 +23,8 @@ public struct Camera {
 	}
 	
 	public func getRay(u: Double, _ v: Double) -> Ray {
-		let jitterX = (randomDouble() - 0.5) * aperture
-		let jitterY = (randomDouble() - 0.5) * aperture
+		let jitterX = (drand48() - 0.5) * aperture
+		let jitterY = (drand48() - 0.5) * aperture
 		return Ray(origin: double3(origin.x + jitterX, origin.y + jitterY, origin.z), direction: lowerLeftCorner + u * horizontal + v * vertical - origin)
 	}
 	

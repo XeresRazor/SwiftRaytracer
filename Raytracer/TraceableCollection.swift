@@ -25,11 +25,10 @@ public struct TraceableCollection: Traceable {
 		var closest = tMax
 		
 		for item in list {
-			let tempRec = item.trace(r, minimumT: tMin, maximumT: closest)
-			if tempRec != nil {
+			if let tempRec = item.trace(r, minimumT: tMin, maximumT: closest) {
 				hitAnything = true
-				closest = tempRec!.time
-				rec = tempRec!
+				closest = tempRec.time
+				rec = tempRec
 			}
 		}
 		

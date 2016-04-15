@@ -12,6 +12,7 @@ public struct HitRecord {
 	var time: Double
 	var point: double3
 	var normal: double3
+	var material: Material?
 	init() {
 		time = 0
 		point = double3()
