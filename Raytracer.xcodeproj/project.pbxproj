@@ -84,12 +84,12 @@
 				D34906571CB58576005FCB28 /* External */,
 				D34906601CB58591005FCB28 /* Image.swift */,
 				D349062D1CB56FCE005FCB28 /* main.swift */,
-				D3AC760C1CC02BF300B86F75 /* Utility.swift */,
 				D34906611CB58591005FCB28 /* module.map */,
 				D34906661CB5A3A2005FCB28 /* Ray.swift */,
 				D349066C1CB5B084005FCB28 /* Sphere.swift */,
 				D349066D1CB5B084005FCB28 /* Traceable.swift */,
 				D34906701CB5B23E005FCB28 /* TraceableCollection.swift */,
+				D3AC760C1CC02BF300B86F75 /* Utility.swift */,
 			);
 			path = Raytracer;
 			sourceTree = "<group>";

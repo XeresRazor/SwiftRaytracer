@@ -13,7 +13,9 @@ import Darwin
 
 func color(r: Ray, world: Traceable) -> double3 {
 	if let rec = world.trace(r, minimumT: 0.0, maximumT: 500.0) {
-		return 0.5 * double3(rec.normal.x + 1, rec.normal.y + 1, rec.normal.z + 1)
+		let target = rec.point + rec.normal + randomInUnitSphere()
+		return 0.5 * color(Ray(origin: rec.point, direction: target - rec.point), world: world)
+//		return 0.5 * double3(rec.normal.x + 1, rec.normal.y + 1, rec.normal.z + 1)
 	} else {
 		let unitDirection = normalize(r.direction)
 		let t = 0.5 * (unitDirection.y + 1.0)
@@ -22,11 +24,12 @@ func color(r: Ray, world: Traceable) -> double3 {
 		return mix(white, blue, t: t)
 	}
 }
+
 let t0 = CFAbsoluteTimeGetCurrent()
 let width = 512
 let height = 384
-let samples = 64
-let coverage = 0.5
+let samples = 256
+let coverage = 1.0
 let viewportWidth = 4.0
 let viewportHeight = viewportWidth * (Double(height) / Double(width))
 
@@ -59,9 +62,9 @@ for y in 0 ..< height {
 			let p = r.pointAtDistance(2.0)
 			col += color(r, world: world)
 		}
-		col.x = col.x / Double(samples)
-		col.y = col.y / Double(samples)
-		col.z = col.z / Double(samples)
+		col.x = sqrt(col.x / Double(samples))
+		col.y = sqrt(col.y / Double(samples))
+		col.z = sqrt(col.z / Double(samples))
 		
 		let pixel = RGBA8Pixel(UInt8(255.0 * col.x), UInt8(255.0 * col.y), UInt8(255.0 * col.z))
 		image[x,height - y - 1] = pixel // Our image is rendered bottom to top, but image files expect top to bottom
