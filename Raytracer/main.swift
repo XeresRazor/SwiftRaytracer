@@ -12,7 +12,7 @@ import Darwin
 
 let width = 640
 let height = 360
-let samples = 8
+let samples = 32
 
 let maxDepth = 50
 let coverage = 1.0
@@ -66,40 +66,47 @@ cam.aperture = 0.0
 let t1 = CFAbsoluteTimeGetCurrent()
 
 print("Beginning render")
-var pixels = 0
+var rendered = 0
 var pixelCount = width * height
+var pixels = [double3](count: pixelCount, repeatedValue: double3(0.0, 0.0, 0.0))
+
 var lastTime = t1
-for y in 0 ..< height {
-	for x in 0 ..< width {
-		var col = double3(0.0, 0.0, 0.0)
-		for s in 0 ..< samples {
+
+for s in 0 ..< samples {
+	for y in 0 ..< height {
+		for x in 0 ..< width {
 			let u = (Double(x) + ((drand48() - 0.5) * coverage)) / Double(width)
 			let v = (Double(y) + ((drand48() - 0.5) * coverage)) / Double(height)
 			let r = cam.getRay(u, v)
 			
 			let p = r.pointAtDistance(2.0)
-			col += color(r, world: world, depth: 0)
+			let col = color(r, world: world, depth: 0)
+			
+			pixels[x + y * width] += col
+			rendered += 1
 		}
-		col.x = sqrt(col.x / Double(samples))
-		col.y = sqrt(col.y / Double(samples))
-		col.z = sqrt(col.z / Double(samples))
-		
-		let pixel = RGBA8Pixel(UInt8(255.0 * col.x), UInt8(255.0 * col.y), UInt8(255.0 * col.z))
-		image[x,height - y - 1] = pixel // Our image is rendered bottom to top, but image files expect top to bottom
-		
-		pixels += 1
 	}
 	
-	let time = CFAbsoluteTimeGetCurrent()
-	if time - lastTime > 1.0 {
-		lastTime = time
-		print("Rendering \((Float(pixels)/Float(pixelCount)) * 100.0)% complete")
+	print("Rendered sample \(s + 1) of \(samples)")
+	for y in 0 ..< height {
+		for x in 0 ..< width {
+			var col = pixels[x + y * width]
+			col.x = sqrt(col.x / Double(s + 1))
+			col.y = sqrt(col.y / Double(s + 1))
+			col.z = sqrt(col.z / Double(s + 1))
+			
+			let pixel = RGBA8Pixel(UInt8(255.0 * col.x), UInt8(255.0 * col.y), UInt8(255.0 * col.z))
+			image[x,height - y - 1] = pixel // Our image is rendered bottom to top, but image files expect top to bottom
+			
+		}
 	}
+	image.writeTo("image.png", format: .png)
 }
+
+
 let t2 = CFAbsoluteTimeGetCurrent()
 
-image.writeTo("image.png", format: .png)
 
-let t3 = CFAbsoluteTimeGetCurrent()
 
-print("Time to initialize: \(t1 - t0).\nTime to render: \(t2 - t1).\nTime to save: \(t3 - t2).\nTotal time: \(t3 - t0)")
+
+print("Time to initialize: \(t1 - t0).\nTime to render: \(t2 - t1).\nTotal time: \(t2 - t0)")
