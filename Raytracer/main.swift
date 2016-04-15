@@ -12,7 +12,7 @@ import Darwin
 
 
 func color(r: Ray, world: Traceable) -> double3 {
-	if let rec = world.trace(r, minimumT: 0.0, maximumT: 500.0) {
+	if let rec = world.trace(r, minimumT: 0.001, maximumT: 50000.0) {
 		let target = rec.point + rec.normal + randomInUnitSphere()
 		return 0.5 * color(Ray(origin: rec.point, direction: target - rec.point), world: world)
 //		return 0.5 * double3(rec.normal.x + 1, rec.normal.y + 1, rec.normal.z + 1)
