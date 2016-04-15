@@ -11,14 +11,16 @@ import simd
 
 public struct MetalMaterial: Material {
 	public var albedo: double3
+	public var fuzziness: Double
 	
-	public init(albedo a: double3) {
+	public init(albedo a: double3, fuzziness f: Double) {
 		albedo = a
+		fuzziness = f
 	}
 	
 	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: double3, scattered: Ray)? {
 		let reflected = reflect(normalize(rayIn.direction), n: rec.normal)
-		let scattered = Ray(origin: rec.point, direction: reflected)
+		let scattered = Ray(origin: rec.point, direction: reflected + fuzziness * randomInUnitSphere())
 		let attenuation = albedo
 		if (dot(scattered.direction, rec.normal) > 0) {
 			return (attenuation, scattered)

@@ -52,8 +52,8 @@ let origin = double3(0.0, 0.0, 0.0)
 
 let sphere1 = Sphere(center: double3(0.0, 0.0, -1.0), radius: 0.5, material: LambertianMaterial(albedo: double3(0.8, 0.3, 0.3)))
 let sphere2 = Sphere(center: double3(0.0, -100.5, -1.0), radius: 100.0, material: LambertianMaterial(albedo: double3(0.8, 0.8, 0.0)))
-let sphere3 = Sphere(center: double3(1.0, 0.0, -1.0), radius: 0.5, material: MetalMaterial(albedo: double3(0.8, 0.6, 0.2)))
-let sphere4 = Sphere(center: double3(-1.0, 0.0, -1.0), radius: 0.5, material: MetalMaterial(albedo: double3(0.8, 0.8, 0.8)))
+let sphere3 = Sphere(center: double3(1.0, 0.0, -1.0), radius: 0.5, material: MetalMaterial(albedo: double3(0.8, 0.6, 0.2), fuzziness: 0.3))
+let sphere4 = Sphere(center: double3(-1.0, 0.0, -1.0), radius: 0.5, material: MetalMaterial(albedo: double3(0.8, 0.8, 0.8), fuzziness: 0.0))
 let world = TraceableCollection(list: [sphere1, sphere2, sphere3, sphere4])
 var cam = Camera(width: viewportWidth, height: viewportHeight)
 cam.aperture = 0.0
