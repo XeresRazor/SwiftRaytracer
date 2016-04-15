@@ -23,9 +23,9 @@ func color(r: Ray, world: Traceable) -> double3 {
 	}
 }
 let t0 = CFAbsoluteTimeGetCurrent()
-let width = 480
-let height = 270
-let samples = 128
+let width = 512
+let height = 384
+let samples = 64
 let coverage = 0.5
 let viewportWidth = 4.0
 let viewportHeight = viewportWidth * (Double(height) / Double(width))
@@ -40,7 +40,7 @@ let sphere1 = Sphere(center: double3(0.0, 0.0, -1.0), radius: 0.5)
 let sphere2 = Sphere(center: double3(0.0, -100.5, -1.0), radius: 100.0)
 let world = TraceableCollection(list: [sphere1, sphere2])
 var cam = Camera(width: viewportWidth, height: viewportHeight)
-cam.aperture = 0.1
+cam.aperture = 0.0
 
 let t1 = CFAbsoluteTimeGetCurrent()
 
