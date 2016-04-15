@@ -10,15 +10,20 @@ import Foundation
 import simd
 import Darwin
 
-let width = 512
-let height = 288
-let fov = 90.0
-let samples = 64
+let width = 1280
+let height = 720
+let samples = 128
+
+let lookfrom = double3(3,3,2)
+let lookAt = double3(0,0,-1)
+let up = double3(0,1,0)
+let fov = 30.0
+let aperture = 1.0
+
 
 let maxDepth = 50
 let coverage = 1.0
-let viewportWidth = 4.0
-let viewportHeight = viewportWidth * (Double(height) / Double(width))
+
 srand48(0)
 
 func colorForSkyDirection(direction: double3) -> double3 {
@@ -46,24 +51,23 @@ let t0 = CFAbsoluteTimeGetCurrent()
 
 
 let image = RGBA8Image(width: width, height: height)
-let lowerLeftCorner = double3(-(viewportWidth / 2.0), -(viewportHeight / 2.0), -1.0)
-let horizontal = double3(viewportWidth, 0.0, 0.0)
-let vertical = double3(0.0, viewportHeight, 0.0)
-let origin = double3(0.0, 0.0, 0.0)
 
 let objects: [Traceable] = [
-	Sphere(center: double3(0.0, 0.0, -1.0), radius: 0.5, material: LambertianMaterial(albedo: double3(0.5, 0.8, 0.6))),
+	Sphere(center: double3(0.0, 0.0, -1.0), radius: 0.5, material: LambertianMaterial(albedo: double3(0.2, 0.2, 0.9))),
 	Sphere(center: double3(0.0, -1000.5, -1.0), radius: 1000.0, material: LambertianMaterial(albedo: double3(0.8, 0.8, 0.0))),
 	Sphere(center: double3(1.0, 0.0, -1.0), radius: 0.5, material: MetalMaterial(albedo: double3(0.2, 0.4, 0.9), fuzziness: 0.3)),
-	Sphere(center: double3(0.0, 1.0, -1.0), radius: 0.5, material: MetalMaterial(albedo: double3(1.0, 1.0, 1.0), fuzziness: 0.0)),
-	Sphere(center: double3(-1.0, 0.0, -1.0), radius: 0.5, material: DielectricMaterial(refractionIndex: 1.2)),
-	Sphere(center: double3(-1.0, 0.0, -1.0), radius: -0.4, material: DielectricMaterial(refractionIndex: 1.2))
+	Sphere(center: double3(-1.0, 0.0, -1.0), radius: 0.5, material: DielectricMaterial(refractionIndex: 1.5)),
+	Sphere(center: double3(-1.0, 0.0, -1.0), radius: -0.45, material: DielectricMaterial(refractionIndex: 1.5))
 ]
 
 let world = TraceableCollection(list: objects)
-var cam = Camera(lookFrom: double3(-2,2,1), lookAt: double3(0,0,-1), up: double3(0,1,0), verticalFOV: fov, aspect: Double(width) / Double(height))
 
-cam.aperture = 0.0
+let aspect = Double(width) / Double(height)
+let focusDistance = length(lookfrom - lookAt)
+
+var cam = Camera(lookFrom: lookfrom, lookAt: lookAt, up: up, verticalFOV: fov, aspect: aspect, aperture: aperture, focusDistance: focusDistance)
+//var cam = Camera(lookFrom: , lookAt: , up: , verticalFOV: fov, aspect: )
+
 
 let t1 = CFAbsoluteTimeGetCurrent()
 

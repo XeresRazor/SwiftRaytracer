@@ -34,6 +34,7 @@ public struct DielectricMaterial: Material {
 			niOverNt = 1.0 / indexOfRefraction
 			cosine = -dot(rayIn.direction, rec.normal) / length(rayIn.direction)
 		}
+		
 		refracted = refract(rayIn.direction, n: outwardNormal, eta: niOverNt)
 		
 		var scattered: Ray
