@@ -20,6 +20,7 @@
 		D3AC760F1CC1645F00B86F75 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC760E1CC1645F00B86F75 /* Material.swift */; };
 		D3AC76131CC16A1000B86F75 /* LambertianMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC76121CC16A1000B86F75 /* LambertianMaterial.swift */; };
 		D3AC76151CC16E6500B86F75 /* MetalMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC76141CC16E6500B86F75 /* MetalMaterial.swift */; };
+		D3AC76171CC1777500B86F75 /* DielectricMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC76161CC1777500B86F75 /* DielectricMaterial.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +54,7 @@
 		D3AC76111CC1685D00B86F75 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = "../../../../../Developer/Xcode/DerivedData/Raytracer-cpnakneglvgoavhghiovyvklfdkm/Build/Products/Release/image.png"; sourceTree = "<group>"; };
 		D3AC76121CC16A1000B86F75 /* LambertianMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LambertianMaterial.swift; sourceTree = "<group>"; };
 		D3AC76141CC16E6500B86F75 /* MetalMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalMaterial.swift; sourceTree = "<group>"; };
+		D3AC76161CC1777500B86F75 /* DielectricMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DielectricMaterial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				D34906601CB58591005FCB28 /* Image.swift */,
 				D3AC76121CC16A1000B86F75 /* LambertianMaterial.swift */,
 				D3AC76141CC16E6500B86F75 /* MetalMaterial.swift */,
+				D3AC76161CC1777500B86F75 /* DielectricMaterial.swift */,
 				D349062D1CB56FCE005FCB28 /* main.swift */,
 				D3AC760E1CC1645F00B86F75 /* Material.swift */,
 				D34906611CB58591005FCB28 /* module.map */,
@@ -183,6 +186,7 @@
 				D3AC760F1CC1645F00B86F75 /* Material.swift in Sources */,
 				D34906671CB5A3A2005FCB28 /* Ray.swift in Sources */,
 				D3AC76151CC16E6500B86F75 /* MetalMaterial.swift in Sources */,
+				D3AC76171CC1777500B86F75 /* DielectricMaterial.swift in Sources */,
 				D3AC760B1CC02A0500B86F75 /* Camera.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

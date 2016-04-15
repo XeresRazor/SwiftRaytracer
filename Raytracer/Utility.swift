@@ -17,3 +17,9 @@ public func randomInUnitSphere() -> double3 {
 	
 	return p
 }
+
+public func schlick(cosine: Double, refractionIndex: Double) -> Double {
+	var r0 = (1 - refractionIndex) / (1 + refractionIndex)
+	r0 = r0 * r0
+	return r0 + (1 - r0) * pow((1 - cosine), 5)
+}
