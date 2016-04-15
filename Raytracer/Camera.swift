@@ -14,12 +14,20 @@ public struct Camera {
 	private var horizontal: double3
 	private var vertical: double3
 	public var aperture: Double = 0.0
-	
-	public init(width: Double, height: Double) {
-		lowerLeftCorner = double3(-(width / 2.0), -(height / 2.0), -1.0)
-		horizontal = double3(width, 0.0, 0.0)
-		vertical = double3(0.0, height, 0.0)
-		origin = double3(0.0, 0.0, 0.0)
+		
+	public init(lookFrom: double3, lookAt: double3, up: double3, verticalFOV: Double, aspect: Double) {
+		let theta = verticalFOV * M_PI/180
+		let halfHeight = tan(theta / 2)
+		let halfWidth = aspect * halfHeight
+		
+		origin = lookFrom
+		let w = normalize(lookFrom - lookAt)
+		let u = normalize(cross(up, w))
+		let v = cross(w, u)
+		
+		lowerLeftCorner = origin - halfWidth * u - halfHeight * v - w
+		horizontal = 2 * halfWidth * u
+		vertical = 2 * halfHeight * v
 	}
 	
 	public func getRay(u: Double, _ v: Double) -> Ray {
