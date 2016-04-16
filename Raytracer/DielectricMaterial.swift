@@ -16,7 +16,7 @@ public class DielectricMaterial: Material {
 		indexOfRefraction = refractionIndex
 	}
 	
-	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)? {
+	public override func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)? {
 		var outwardNormal: float3
 		let reflected = reflect(rayIn.direction, n: rec.normal)
 		var niOverNt: Float

@@ -26,6 +26,8 @@ public struct HitRecord {
 	}
 }
 
-public protocol Traceable {
-	func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord?
+public class Traceable {
+	func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+		fatalError("trace() must be overridden")
+	}
 }

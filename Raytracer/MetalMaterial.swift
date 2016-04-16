@@ -18,7 +18,7 @@ public class MetalMaterial: Material {
 		fuzziness = f
 	}
 	
-	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)? {
+	public override func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)? {
 		let reflected = reflect(normalize(rayIn.direction), n: rec.normal)
 		let scattered = Ray(origin: rec.point, direction: reflected + fuzziness * randomInUnitSphere(), time: rayIn.time)
 		let attenuation = albedo

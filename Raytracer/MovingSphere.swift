@@ -29,7 +29,7 @@ public class MovingSphere: Traceable {
 		return mix(center0, center1, t: time)
 	}
 	
-	public func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+	public override func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
 		let cen = center(r.time)
 		var rec = HitRecord()
 		rec.material = material

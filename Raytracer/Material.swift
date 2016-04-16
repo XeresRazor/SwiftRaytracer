@@ -6,9 +6,10 @@
 //  Copyright © 2016 David Green. All rights reserved.
 //
 
-import Foundation
 import simd
 
-public protocol Material {
-	func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)?
+public class Material {
+	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)? {
+		fatalError("scatter() must be overridden.")
+	}
 }

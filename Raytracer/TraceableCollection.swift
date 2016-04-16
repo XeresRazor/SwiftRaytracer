@@ -11,7 +11,7 @@ import simd
 public class TraceableCollection: Traceable {
 	public var list: [Traceable]
 	
-	public init() {
+	public override init() {
 		list = [Traceable]()
 	}
 	
@@ -19,7 +19,7 @@ public class TraceableCollection: Traceable {
 		list = l
 	}
 	
-	public func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+	public override func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
 		var rec = HitRecord()
 		var hitAnything = false
 		var closest = tMax

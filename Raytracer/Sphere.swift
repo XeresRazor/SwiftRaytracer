@@ -13,7 +13,7 @@ public class Sphere: Traceable {
 	public var radius: Float
 	private var material: Material
 	
-	public init() {
+	public override init() {
 		center = float3()
 		radius = 0
 		material = LambertianMaterial(albedo: float3(0.5, 0.5, 0.5))
@@ -24,7 +24,7 @@ public class Sphere: Traceable {
 		radius = r
 		material = m
 	}
-	
+	override 
 	public func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
 		var rec = HitRecord()
 		rec.material = material
