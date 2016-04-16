@@ -10,6 +10,26 @@ import Foundation
 import simd
 import Darwin
 
+print("Initializing Renderer.")
+let t0 = CFAbsoluteTimeGetCurrent()
+
+// Constants
+let width = 320
+let height = 180
+let samples = 128
+
+let lookfrom = float3(13,2,3)
+let lookAt = float3(0,0,0)
+let up = float3(0,1,0)
+let fov: Float = 20.0
+let aperture: Float = 0.0
+let focusDistance = Float(10.0) //length(lookfrom - lookAt)
+let aspect = Float(width) / Float(height)
+
+
+let maxDepth = 50
+let coverage: Float = 0.5
+
 func randomScene() -> Traceable {
 	var list: [Traceable] = []
 	list.append(Sphere(center: float3(0, -1000, 0), radius: 1000, material: LambertianMaterial(albedo: float3(0.5, 0.5, 0.5))))
@@ -53,23 +73,6 @@ func randomScene() -> Traceable {
 	return TraceableCollection(list: list)
 }
 
-let width = 320
-let height = 180
-let samples = 128
-
-let lookfrom = float3(13,2,3)
-let lookAt = float3(0,0,0)
-let up = float3(0,1,0)
-let fov: Float = 20.0
-let aperture: Float = 0.0
-let focusDistance = Float(10.0) //length(lookfrom - lookAt)
-
-
-let maxDepth = 50
-let coverage: Float = 0.5
-
-srand48(0)
-
 func colorForSkyDirection(direction: float3) -> float3 {
 	let unitDirection = normalize(direction)
 	let t = 0.5 * (unitDirection.y + 1.0)
@@ -91,25 +94,24 @@ func color(r: Ray, world: Traceable, depth: Int) -> float3 {
 	}
 }
 
-let t0 = CFAbsoluteTimeGetCurrent()
+srand48(0)
+
 
 
 let image = RGBA8Image(width: width, height: height)
-
 let world = randomScene()
 
-let aspect = Float(width) / Float(height)
 
 var cam = Camera(lookFrom: lookfrom, lookAt: lookAt, up: up, verticalFOV: fov, aspect: aspect, aperture: aperture, focusDistance: focusDistance, time0: 0.0, time1: 1.0)
 
 let t1 = CFAbsoluteTimeGetCurrent()
 
-print("Beginning render")
 var rendered = 0
 var pixelCount = width * height
 var pixels = [float3](count: pixelCount, repeatedValue: float3(0.0, 0.0, 0.0))
 
 var lastTime = t1
+print("Beginning render")
 
 for s in 0 ..< samples {
 	let time = CFAbsoluteTimeGetCurrent()
