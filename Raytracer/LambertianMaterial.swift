@@ -9,15 +9,15 @@
 import Foundation
 import simd
 
-public struct LambertianMaterial: Material {
-	public var albedo: double3
-	public init(albedo a: double3) {
+public class LambertianMaterial: Material {
+	public var albedo: float3
+	public init(albedo a: float3) {
 		albedo = a
 	}
 	
-	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: double3, scattered: Ray)? {
+	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)? {
 		let target = rec.point + rec.normal + randomInUnitSphere()
-		let scattered = Ray(origin: rec.point, direction: target - rec.point)
+		let scattered = Ray(origin: rec.point, direction: target - rec.point, time: rayIn.time)
 		let attenuation = albedo
 		return (attenuation, scattered)
 	}

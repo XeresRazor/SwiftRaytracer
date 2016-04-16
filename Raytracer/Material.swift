@@ -10,5 +10,5 @@ import Foundation
 import simd
 
 public protocol Material {
-	func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: double3, scattered: Ray)?
+	func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)?
 }

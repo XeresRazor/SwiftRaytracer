@@ -9,18 +9,18 @@
 import Foundation
 import simd
 
-public struct MetalMaterial: Material {
-	public var albedo: double3
-	public var fuzziness: Double
+public class MetalMaterial: Material {
+	public var albedo: float3
+	public var fuzziness: Float
 	
-	public init(albedo a: double3, fuzziness f: Double) {
+	public init(albedo a: float3, fuzziness f: Float) {
 		albedo = a
 		fuzziness = f
 	}
 	
-	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: double3, scattered: Ray)? {
+	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)? {
 		let reflected = reflect(normalize(rayIn.direction), n: rec.normal)
-		let scattered = Ray(origin: rec.point, direction: reflected + fuzziness * randomInUnitSphere())
+		let scattered = Ray(origin: rec.point, direction: reflected + fuzziness * randomInUnitSphere(), time: rayIn.time)
 		let attenuation = albedo
 		if (dot(scattered.direction, rec.normal) > 0) {
 			return (attenuation, scattered)

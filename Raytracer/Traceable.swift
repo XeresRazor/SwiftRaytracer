@@ -9,17 +9,17 @@
 import simd
 
 public struct HitRecord {
-	var time: Double
-	var point: double3
-	var normal: double3
+	var time: Float
+	var point: float3
+	var normal: float3
 	var material: Material?
 	init() {
 		time = 0
-		point = double3()
-		normal = double3()
+		point = float3()
+		normal = float3()
 	}
 	
-	init(_ t: Double, _ p: double3, _ n: double3) {
+	init(_ t: Float, _ p: float3, _ n: float3) {
 		time = t
 		point = p
 		normal = n
@@ -27,5 +27,5 @@ public struct HitRecord {
 }
 
 public protocol Traceable {
-	func trace(r: Ray, minimumT tMin: Double, maximumT tMax: Double) -> HitRecord?
+	func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord?
 }

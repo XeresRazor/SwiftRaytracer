@@ -8,7 +8,7 @@
 
 import simd
 
-public struct TraceableCollection: Traceable {
+public class TraceableCollection: Traceable {
 	public var list: [Traceable]
 	
 	public init() {
@@ -19,7 +19,7 @@ public struct TraceableCollection: Traceable {
 		list = l
 	}
 	
-	public func trace(r: Ray, minimumT tMin: Double, maximumT tMax: Double) -> HitRecord? {
+	public func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
 		var rec = HitRecord()
 		var hitAnything = false
 		var closest = tMax

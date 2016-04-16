@@ -9,15 +9,17 @@
 import simd
 
 public struct Ray {
-	public var origin: double3
-	public var direction: double3
+	private(set) public var origin: float3
+	private(set) public var direction: float3
+	private(set) public var time: Float
 	
-	public init(origin o: double3, direction d: double3) {
+	public init(origin o: float3, direction d: float3, time t: Float = 0.0) {
 		origin = o
 		direction = d
+		time = t
 	}
 	
-	public func pointAtDistance(t: Double) -> double3 {
+	public func pointAtDistance(t: Float) -> float3 {
 		return origin + t * direction
 	}
 }
