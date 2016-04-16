@@ -25,7 +25,7 @@ func randomScene() -> Traceable {
 					list.append(
 						MovingSphere(
 							center0: center,
-							center1: center + float3(0, 0.5 + Float(drand48()) * 0.5, 0.0),
+							center1: center + float3(0, Float(drand48()), 0.0),
 							time0: 0.0,
 							time1: 1.0,
 							radius: 0.2,
