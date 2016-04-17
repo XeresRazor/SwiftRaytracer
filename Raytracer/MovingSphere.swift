@@ -58,4 +58,9 @@ public class MovingSphere: Traceable {
 
 	}
 	
+	public override func boundingBox(t0: Float, t1: Float) -> AABB? {
+		let box0 = AABB(min: center0 - float3(radius, radius, radius), max: center0 + float3(radius, radius, radius))
+		let box1 = AABB(min: center1 - float3(radius, radius, radius), max: center1 + float3(radius, radius, radius))
+		return surroundingBox(box0, box1: box1)
+	}
 }

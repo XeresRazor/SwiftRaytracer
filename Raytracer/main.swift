@@ -14,15 +14,15 @@ print("Initializing Renderer.")
 let t0 = CFAbsoluteTimeGetCurrent()
 
 // Constants
-let width = 320
-let height = 180
+let width = 640
+let height = 360
 let samples = 128
 
 let lookfrom = float3(13,2,3)
 let lookAt = float3(0,0,0)
 let up = float3(0,1,0)
 let fov: Float = 20.0
-let aperture: Float = 0.0
+let aperture: Float = 0.05
 let focusDistance = Float(10.0) //length(lookfrom - lookAt)
 let aspect = Float(width) / Float(height)
 
@@ -41,23 +41,27 @@ func randomScene() -> Traceable {
 			
 			if length(center - float3(4, 0.2, 0)) > 0.9 {
 				if chooseMat < 0.8 { // diffuse
-					//list.append(Sphere(center: center, radius: 0.2, material: LambertianMaterial(albedo: float3(Float(drand48()) * Float(drand48()), Float(drand48()) * Float(drand48()), Float(drand48()) * Float(drand48())))))
-					list.append(
-						MovingSphere(
-							center0: center,
-							center1: center + float3(0, Float(drand48()), 0.0),
-							time0: 0.0,
-							time1: 1.0,
-							radius: 0.2,
-							material: LambertianMaterial(
-								albedo: float3(
-									Float(drand48()) * Float(drand48()),
-									Float(drand48()) * Float(drand48()),
-									Float(drand48()) * Float(drand48())
-								)
-							)
-						)
-					)
+                    let rand2 = drand48() > 0.75
+                    if rand2 {
+                        list.append(Sphere(center: center, radius: 0.2, material: LambertianMaterial(albedo: float3(Float(drand48()) * Float(drand48()), Float(drand48()) * Float(drand48()), Float(drand48()) * Float(drand48())))))
+                    } else {
+                        list.append(
+                            MovingSphere(
+                                center0: center,
+                                center1: center + float3(0, Float(drand48()), 0.0),
+                                time0: 0.0,
+                                time1: 1.0,
+                                radius: 0.2,
+                                material: LambertianMaterial(
+                                    albedo: float3(
+                                        Float(drand48()) * Float(drand48()),
+                                        Float(drand48()) * Float(drand48()),
+                                        Float(drand48()) * Float(drand48())
+                                    )
+                                )
+                            )
+                        )
+                    }
 				} else if chooseMat < 0.95 { // metal
 					list.append(Sphere(center: center, radius: 0.2, material: MetalMaterial(albedo: float3(0.5 * (1 + Float(drand48())), 0.5 * (1 + Float(drand48())), 0.5 * (1 + Float(drand48()))), fuzziness: 0.5 *  Float(drand48()))))
 				} else { // glass
@@ -70,7 +74,9 @@ func randomScene() -> Traceable {
 	list.append(Sphere(center: float3(0, 1, 0), radius: 1.0, material: DielectricMaterial(refractionIndex: 1.5)))
 	list.append(Sphere(center: float3(-4, 1, 0), radius: 1.0, material: LambertianMaterial(albedo: float3(0.4, 0.2, 0.1))))
 	list.append(Sphere(center: float3(4, 1, 0), radius: 1.0, material: MetalMaterial(albedo: float3(0.7, 0.6, 0.5), fuzziness: 0.0)))
-	return TraceableCollection(list: list)
+	let bvh = BVHNode(list: list, time0: 0.0, time1: 1.0)
+	return bvh
+//    return TraceableCollection(list: list)
 }
 
 func colorForSkyDirection(direction: float3) -> float3 {

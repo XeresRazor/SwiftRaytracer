@@ -24,8 +24,8 @@ public class Sphere: Traceable {
 		radius = r
 		material = m
 	}
-	override 
-	public func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+	
+	public override func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
 		var rec = HitRecord()
 		rec.material = material
 		let oc = r.origin - center
@@ -50,5 +50,9 @@ public class Sphere: Traceable {
 			}
 		}
 		return nil
+	}
+	
+	public override func boundingBox(t0: Float, t1: Float) -> AABB? {
+		return AABB(min: center - float3(radius, radius, radius), max: center + float3(radius, radius, radius))
 	}
 }

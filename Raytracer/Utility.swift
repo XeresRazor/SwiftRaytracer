@@ -23,3 +23,9 @@ public func schlick(cosine: Float, refractionIndex: Float) -> Float {
 	r0 = r0 * r0
 	return r0 + (1 - r0) * pow((1 - cosine), 5)
 }
+
+public func surroundingBox(box0: AABB, box1: AABB) -> AABB {
+	let small = min(box0.minimum, box1.minimum)
+	let big = max(box0.maximum, box1.maximum)
+	return AABB(min: small, max: big)
+}

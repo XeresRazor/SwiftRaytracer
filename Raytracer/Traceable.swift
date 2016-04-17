@@ -27,7 +27,11 @@ public struct HitRecord {
 }
 
 public class Traceable {
-	func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+	public func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
 		fatalError("trace() must be overridden")
+	}
+	
+	public func boundingBox(t0: Float, t1: Float) -> AABB? {
+		fatalError("boundingBox() must be overridden")
 	}
 }
