@@ -39,7 +39,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		32C53D0B1CC282FF005EAD8E /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = "../../../../../Developer/Xcode/DerivedData/Raytracer-fmbyycbhvyynbeagvwxdemcbitgj/Build/Products/Debug/image.png"; sourceTree = "<group>"; };
 		D349062A1CB56FCE005FCB28 /* Raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		D349062D1CB56FCE005FCB28 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D34906581CB58576005FCB28 /* stb_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
@@ -52,6 +51,7 @@
 		D349066C1CB5B084005FCB28 /* Sphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
 		D349066D1CB5B084005FCB28 /* Traceable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Traceable.swift; sourceTree = "<group>"; };
 		D34906701CB5B23E005FCB28 /* TraceableCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceableCollection.swift; sourceTree = "<group>"; };
+		D3884A241CC52721002B0B8D /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = "../../../../../Developer/Xcode/DerivedData/Raytracer-cpnakneglvgoavhghiovyvklfdkm/Build/Products/Release/image.png"; sourceTree = "<group>"; };
 		D3AC760A1CC02A0500B86F75 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		D3AC760C1CC02BF300B86F75 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		D3AC760E1CC1645F00B86F75 /* Material.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 			children = (
 				D349062C1CB56FCE005FCB28 /* Raytracer */,
 				D349062B1CB56FCE005FCB28 /* Products */,
-				32C53D0B1CC282FF005EAD8E /* image.png */,
+				D3884A241CC52721002B0B8D /* image.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -292,6 +292,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_DISABLE_SAFETY_CHECKS = NO;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Raytracer";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -304,6 +305,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_DISABLE_SAFETY_CHECKS = NO;
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Raytracer";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
