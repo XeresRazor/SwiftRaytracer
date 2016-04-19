@@ -25,7 +25,7 @@ func generateFractalSpheresAroundSphere(parentSphere: Sphere, level: Int, maxLev
 func fractalScene() -> Traceable {
 	var list: [Traceable] = []
 	let mirror = MetalMaterial(albedo: float3(1.0, 1.0, 1.0), fuzziness: 0.05)
-	let diffuse = LambertianMaterial(albedo: float3(0.5, 0.5, 0.8))
+	let diffuse = LambertianMaterial(albedo: ConstantTexture(color: float3(0.5, 0.5, 0.8)))
 	//list.append(Sphere(center: float3(0,-1016,0), radius: 1000, material: LambertianMaterial(albedo: float3(0.8, 0.8, 0.8))))
 	let sphere = Sphere(center: float3(0,0,0), radius: 16.0, material: DielectricMaterial(refractionIndex: 1.5))
 	list.append(sphere)
@@ -37,7 +37,7 @@ func fractalScene() -> Traceable {
 
 func randomScene() -> Traceable {
 	var list: [Traceable] = []
-	list.append(Sphere(center: float3(0, -1000, 0), radius: 1000, material: LambertianMaterial(albedo: float3(0.5, 0.5, 0.5))))
+	list.append(Sphere(center: float3(0, -1000, 0), radius: 1000, material: LambertianMaterial(albedo: ConstantTexture(color: float3(0.5, 0.5, 0.5)))))
 	
 	for a in -11 ..< 11 {
 		for b in -11 ..< 11 {
@@ -48,7 +48,7 @@ func randomScene() -> Traceable {
 				if chooseMat < 0.8 { // diffuse
 					let rand2 = drand48() > 0.75
 					if rand2 {
-						list.append(Sphere(center: center, radius: 0.2, material: LambertianMaterial(albedo: float3(Float(drand48()) * Float(drand48()), Float(drand48()) * Float(drand48()), Float(drand48()) * Float(drand48())))))
+						list.append(Sphere(center: center, radius: 0.2, material: LambertianMaterial(albedo: ConstantTexture(color: float3(Float(drand48()) * Float(drand48()), Float(drand48()) * Float(drand48()), Float(drand48()) * Float(drand48()))))))
 					} else {
 						list.append(
 							MovingSphere(
@@ -58,10 +58,10 @@ func randomScene() -> Traceable {
 								time1: 1.0,
 								radius: 0.2,
 								material: LambertianMaterial(
-									albedo: float3(
+									albedo: ConstantTexture(color: float3(
 										Float(drand48()) * Float(drand48()),
 										Float(drand48()) * Float(drand48()),
-										Float(drand48()) * Float(drand48())
+										Float(drand48()) * Float(drand48()))
 									)
 								)
 							)
@@ -77,7 +77,7 @@ func randomScene() -> Traceable {
 	}
 	
 	list.append(Sphere(center: float3(0, 1, 0), radius: 1.0, material: DielectricMaterial(refractionIndex: 1.5, color: float3(1,1,1), fuzziness: 1.0)))
-	list.append(Sphere(center: float3(-4, 1, 0), radius: 1.0, material: LambertianMaterial(albedo: float3(0.4, 0.2, 0.1))))
+	list.append(Sphere(center: float3(-4, 1, 0), radius: 1.0, material: LambertianMaterial(albedo: ConstantTexture(color: float3(0.4, 0.2, 0.1)))))
 	list.append(Sphere(center: float3(4, 1, 0), radius: 1.0, material: MetalMaterial(albedo: float3(0.7, 0.6, 0.5), fuzziness: 0.0)))
 	let bvh = BVHNode(list: list, time0: 0.0, time1: 1.0)
 	return bvh

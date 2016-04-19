@@ -16,7 +16,7 @@ public class Sphere: Traceable {
 	public override init() {
 		center = float3()
 		radius = 0
-		material = LambertianMaterial(albedo: float3(0.5, 0.5, 0.5))
+		material = LambertianMaterial(albedo: ConstantTexture(color: float3(0.5, 0.5, 0.5)))
 	}
 	
 	public init(center c: float3, radius r: Float, material m: Material) {
