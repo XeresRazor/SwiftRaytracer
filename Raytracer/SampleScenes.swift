@@ -37,7 +37,8 @@ func fractalScene() -> Traceable {
 
 func randomScene() -> Traceable {
 	var list: [Traceable] = []
-	list.append(Sphere(center: float3(0, -1000, 0), radius: 1000, material: LambertianMaterial(albedo: ConstantTexture(color: float3(0.5, 0.5, 0.5)))))
+	let baseTexture = CheckerTexture(texture0: ConstantTexture(color: float3(0.2, 0.3, 0.1)), texture1: ConstantTexture(color: float3(0.9, 0.9, 0.9)))
+	list.append(Sphere(center: float3(0, -1000, 0), radius: 1000, material: LambertianMaterial(albedo: baseTexture)))
 	
 	for a in -11 ..< 11 {
 		for b in -11 ..< 11 {

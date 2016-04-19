@@ -15,8 +15,8 @@ print("Initializing Renderer.")
 let t0 = CFAbsoluteTimeGetCurrent()
 
 // Render configuration
-let width = 320
-let height = 180
+let width = 640
+let height = 360
 let samples = 128
 
 let renderConfig = RenderConfig(width: width, height: height, samples: samples)
