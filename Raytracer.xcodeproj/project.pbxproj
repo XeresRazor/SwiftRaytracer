@@ -15,6 +15,8 @@
 		D349066E1CB5B084005FCB28 /* Sphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = D349066C1CB5B084005FCB28 /* Sphere.swift */; };
 		D349066F1CB5B084005FCB28 /* Traceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D349066D1CB5B084005FCB28 /* Traceable.swift */; };
 		D34906711CB5B23E005FCB28 /* TraceableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D34906701CB5B23E005FCB28 /* TraceableCollection.swift */; };
+		D3884A261CC67EF9002B0B8D /* Raytracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3884A251CC67EF9002B0B8D /* Raytracer.swift */; };
+		D3884A281CC68428002B0B8D /* SampleScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3884A271CC68428002B0B8D /* SampleScenes.swift */; };
 		D3AC760B1CC02A0500B86F75 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC760A1CC02A0500B86F75 /* Camera.swift */; };
 		D3AC760D1CC02BF300B86F75 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC760C1CC02BF300B86F75 /* Utility.swift */; };
 		D3AC760F1CC1645F00B86F75 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC760E1CC1645F00B86F75 /* Material.swift */; };
@@ -39,6 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		32F8BF6B1CC60B3700112CA9 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = "../../../../../Developer/Xcode/DerivedData/Raytracer-fmbyycbhvyynbeagvwxdemcbitgj/Build/Products/Release/image.png"; sourceTree = "<group>"; };
 		D349062A1CB56FCE005FCB28 /* Raytracer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Raytracer; sourceTree = BUILT_PRODUCTS_DIR; };
 		D349062D1CB56FCE005FCB28 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D34906581CB58576005FCB28 /* stb_image.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
@@ -51,7 +54,8 @@
 		D349066C1CB5B084005FCB28 /* Sphere.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
 		D349066D1CB5B084005FCB28 /* Traceable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Traceable.swift; sourceTree = "<group>"; };
 		D34906701CB5B23E005FCB28 /* TraceableCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceableCollection.swift; sourceTree = "<group>"; };
-		D3884A241CC52721002B0B8D /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = image.png; path = "../../../../../Developer/Xcode/DerivedData/Raytracer-cpnakneglvgoavhghiovyvklfdkm/Build/Products/Release/image.png"; sourceTree = "<group>"; };
+		D3884A251CC67EF9002B0B8D /* Raytracer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Raytracer.swift; sourceTree = "<group>"; };
+		D3884A271CC68428002B0B8D /* SampleScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleScenes.swift; sourceTree = "<group>"; };
 		D3AC760A1CC02A0500B86F75 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		D3AC760C1CC02BF300B86F75 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		D3AC760E1CC1645F00B86F75 /* Material.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
@@ -79,7 +83,7 @@
 			children = (
 				D349062C1CB56FCE005FCB28 /* Raytracer */,
 				D349062B1CB56FCE005FCB28 /* Products */,
-				D3884A241CC52721002B0B8D /* image.png */,
+				32F8BF6B1CC60B3700112CA9 /* image.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				D3AC761A1CC2C5E200B86F75 /* AABB.swift */,
+				D3AC761C1CC2CB1400B86F75 /* BVHNode.swift */,
 				D3AC760A1CC02A0500B86F75 /* Camera.swift */,
 				D3AC76161CC1777500B86F75 /* DielectricMaterial.swift */,
 				D34906571CB58576005FCB28 /* External */,
@@ -106,11 +111,12 @@
 				D34906611CB58591005FCB28 /* module.map */,
 				D3AC76181CC2B5DA00B86F75 /* MovingSphere.swift */,
 				D34906661CB5A3A2005FCB28 /* Ray.swift */,
+				D3884A251CC67EF9002B0B8D /* Raytracer.swift */,
+				D3884A271CC68428002B0B8D /* SampleScenes.swift */,
 				D349066C1CB5B084005FCB28 /* Sphere.swift */,
 				D349066D1CB5B084005FCB28 /* Traceable.swift */,
 				D34906701CB5B23E005FCB28 /* TraceableCollection.swift */,
 				D3AC760C1CC02BF300B86F75 /* Utility.swift */,
-				D3AC761C1CC2CB1400B86F75 /* BVHNode.swift */,
 			);
 			path = Raytracer;
 			sourceTree = "<group>";
@@ -198,6 +204,8 @@
 				D3AC761B1CC2C5E200B86F75 /* AABB.swift in Sources */,
 				D3AC76151CC16E6500B86F75 /* MetalMaterial.swift in Sources */,
 				D3AC76171CC1777500B86F75 /* DielectricMaterial.swift in Sources */,
+				D3884A261CC67EF9002B0B8D /* Raytracer.swift in Sources */,
+				D3884A281CC68428002B0B8D /* SampleScenes.swift in Sources */,
 				D3AC76191CC2B5DA00B86F75 /* MovingSphere.swift in Sources */,
 				D3AC760B1CC02A0500B86F75 /* Camera.swift in Sources */,
 			);
