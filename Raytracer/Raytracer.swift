@@ -40,9 +40,32 @@ private func color(r: Ray, world: Traceable, depth: Int) -> float3 {
 	}
 }
 
-public func Raytrace(scene: Traceable, camera: Camera, config: RenderConfig) -> RGBA8Image {
+public typealias PreviewCallback = (RGBA8Image) -> Void
+
+private func ImageFromPixels(pixels: [float3], samples: Int, width: Int, height: Int) -> RGBA8Image {
+	let image = RGBA8Image(width: width, height: height)
+	
+	for y in 0 ..< height {
+		for x in 0 ..< width {
+			// Convert from accumulator to pixels
+			var col = pixels[x + y * width]
+			col.x = sqrt(col.x / Float(samples + 1))
+			col.y = sqrt(col.y / Float(samples + 1))
+			col.z = sqrt(col.z / Float(samples + 1))
+			
+			let pixel = RGBA8Pixel(UInt8(255.0 * col.x), UInt8(255.0 * col.y), UInt8(255.0 * col.z))
+			image[x,height - y - 1] = pixel // Our image is rendered bottom to top, but image files expect top to bottom
+		}
+	}
+	
+	return image
+}
+
+public func Raytrace(scene: Traceable, camera: Camera, config: RenderConfig, previewCallback: PreviewCallback? = nil) -> RGBA8Image {
 	let pixelCount = config.width * config.height
 	var pixels = [float3](count: pixelCount, repeatedValue: float3(0.0, 0.0, 0.0))
+	
+	var lastCallbackTime = CFAbsoluteTimeGetCurrent()
 	
 	for s in 0 ..< config.samples {
 		let time = CFAbsoluteTimeGetCurrent()
@@ -59,23 +82,16 @@ public func Raytrace(scene: Traceable, camera: Camera, config: RenderConfig) -> 
 		}
 		
 		let endTime = CFAbsoluteTimeGetCurrent()
+		
+		if endTime - lastCallbackTime > 1.0 {
+			lastCallbackTime = endTime
+			if let callback = previewCallback  {
+				callback(ImageFromPixels(pixels, samples: s, width: config.width, height: config.height))
+			}
+		}
+		
 		print("Rendered sample \(s + 1) of \(samples) in \(endTime - time) seconds.")
 	}
 	
-	let image = RGBA8Image(width: config.width, height: config.height)
-	
-	for y in 0 ..< config.height {
-		for x in 0 ..< config.width {
-			// Convert from accumulator to pixels
-			var col = pixels[x + y * width]
-			col.x = sqrt(col.x / Float(config.samples + 1))
-			col.y = sqrt(col.y / Float(config.samples + 1))
-			col.z = sqrt(col.z / Float(config.samples + 1))
-			
-			let pixel = RGBA8Pixel(UInt8(255.0 * col.x), UInt8(255.0 * col.y), UInt8(255.0 * col.z))
-			image[x,height - y - 1] = pixel // Our image is rendered bottom to top, but image files expect top to bottom
-		}
-	}
-	
-	return image
+	return ImageFromPixels(pixels, samples: config.samples, width: config.width, height: config.height)
 }

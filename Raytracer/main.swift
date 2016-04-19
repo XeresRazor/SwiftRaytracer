@@ -17,7 +17,7 @@ let t0 = CFAbsoluteTimeGetCurrent()
 // Render configuration
 let width = 320
 let height = 180
-let samples = 16
+let samples = 128
 
 let renderConfig = RenderConfig(width: width, height: height, samples: samples)
 
@@ -48,7 +48,9 @@ let t1 = CFAbsoluteTimeGetCurrent()
 print("Beginning render")
 
 
-let image = Raytrace(world, camera: cam, config: renderConfig)
+let image = Raytrace(world, camera: cam, config: renderConfig) { image in
+	image.writeTo("previewImage.png", format: .png)
+}
 
 image.writeTo("image.png", format: .png)
 
