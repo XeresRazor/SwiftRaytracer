@@ -6,6 +6,7 @@ A simple, moderately optimized Monte-Carlo path tracer implemented in Swift.
 # Todo:
 This Renderer is in active development.
 - Surface texturing
+- More primitive types.
 - Volume rendering.
 - Scene description format.
 - Command line interface.
