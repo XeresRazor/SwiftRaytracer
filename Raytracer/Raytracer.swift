@@ -13,11 +13,6 @@ let maxDepth = 50
 let coverage: Float = 0.5
 
 
-public struct RenderConfig {
-	public var width: Int
-	public var height: Int
-	public var samples: Int
-}
 
 private func colorForSkyDirection(direction: float3) -> float3 {
 	let unitDirection = normalize(direction)
@@ -61,22 +56,25 @@ private func ImageFromPixels(pixels: [float3], samples: Int, width: Int, height:
 	return image
 }
 
-public func Raytrace(scene: Traceable, camera: Camera, config: RenderConfig, previewCallback: PreviewCallback? = nil) -> RGBA8Image {
-	let pixelCount = config.width * config.height
+public func Raytrace(scene: Scene, previewCallback: PreviewCallback? = nil) -> RGBA8Image {
+	let width = scene.config.width
+	let height = scene.config.height
+	
+	let pixelCount = width * height
 	var pixels = [float3](count: pixelCount, repeatedValue: float3(0.0, 0.0, 0.0))
 	
 	var lastCallbackTime = CFAbsoluteTimeGetCurrent()
 	
-	for s in 0 ..< config.samples {
+	for s in 0 ..< scene.config.samples {
 		let time = CFAbsoluteTimeGetCurrent()
 		let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-		dispatch_apply(config.height, queue) { y in
-			for x in 0 ..< config.width {
+		dispatch_apply(height, queue) { y in
+			for x in 0 ..< width {
 				let u = (Float(x) + ((Float(drand48()) - 0.5) * coverage)) / Float(width)
 				let v = (Float(y) + ((Float(drand48()) - 0.5) * coverage)) / Float(height)
-				let r = camera.getRay(u, v)
+				let r = scene.camera.getRay(u, v)
 				
-				let col = color(r, world: scene, depth: 0)
+				let col = color(r, world: scene.world, depth: 0)
 				pixels[x + y * width] += col
 			}
 		}
@@ -86,12 +84,12 @@ public func Raytrace(scene: Traceable, camera: Camera, config: RenderConfig, pre
 		if endTime - lastCallbackTime > 1.0 {
 			lastCallbackTime = endTime
 			if let callback = previewCallback  {
-				callback(ImageFromPixels(pixels, samples: s, width: config.width, height: config.height))
+				callback(ImageFromPixels(pixels, samples: s, width: width, height: height))
 			}
 		}
 		
-		print("Rendered sample \(s + 1) of \(samples) in \(endTime - time) seconds.")
+		print("Rendered sample \(s + 1) of \(scene.config.samples) in \(endTime - time) seconds.")
 	}
 	
-	return ImageFromPixels(pixels, samples: config.samples, width: config.width, height: config.height)
+	return ImageFromPixels(pixels, samples: scene.config.samples, width: width, height: height)
 }

@@ -20,6 +20,7 @@
 		D3884A2C1CC6C09A002B0B8D /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3884A2B1CC6C09A002B0B8D /* Texture.swift */; };
 		D3884A2E1CC6C0F1002B0B8D /* ConstantTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3884A2D1CC6C0F1002B0B8D /* ConstantTexture.swift */; };
 		D3884A301CC6C5B7002B0B8D /* CheckerTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3884A2F1CC6C5B7002B0B8D /* CheckerTexture.swift */; };
+		D3884A321CC6CB45002B0B8D /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3884A311CC6CB45002B0B8D /* Scene.swift */; };
 		D3AC760B1CC02A0500B86F75 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC760A1CC02A0500B86F75 /* Camera.swift */; };
 		D3AC760D1CC02BF300B86F75 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC760C1CC02BF300B86F75 /* Utility.swift */; };
 		D3AC760F1CC1645F00B86F75 /* Material.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AC760E1CC1645F00B86F75 /* Material.swift */; };
@@ -63,6 +64,7 @@
 		D3884A2B1CC6C09A002B0B8D /* Texture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		D3884A2D1CC6C0F1002B0B8D /* ConstantTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantTexture.swift; sourceTree = "<group>"; };
 		D3884A2F1CC6C5B7002B0B8D /* CheckerTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckerTexture.swift; sourceTree = "<group>"; };
+		D3884A311CC6CB45002B0B8D /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		D3AC760A1CC02A0500B86F75 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		D3AC760C1CC02BF300B86F75 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		D3AC760E1CC1645F00B86F75 /* Material.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				D34906661CB5A3A2005FCB28 /* Ray.swift */,
 				D3884A251CC67EF9002B0B8D /* Raytracer.swift */,
 				D3884A271CC68428002B0B8D /* SampleScenes.swift */,
+				D3884A311CC6CB45002B0B8D /* Scene.swift */,
 				D349066C1CB5B084005FCB28 /* Sphere.swift */,
 				D3884A2B1CC6C09A002B0B8D /* Texture.swift */,
 				D349066D1CB5B084005FCB28 /* Traceable.swift */,
@@ -220,6 +223,7 @@
 				D3AC76171CC1777500B86F75 /* DielectricMaterial.swift in Sources */,
 				D3884A261CC67EF9002B0B8D /* Raytracer.swift in Sources */,
 				D3884A281CC68428002B0B8D /* SampleScenes.swift in Sources */,
+				D3884A321CC6CB45002B0B8D /* Scene.swift in Sources */,
 				D3AC76191CC2B5DA00B86F75 /* MovingSphere.swift in Sources */,
 				D3AC760B1CC02A0500B86F75 /* Camera.swift in Sources */,
 			);
