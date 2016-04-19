@@ -9,23 +9,23 @@
 import simd
 
 public class Sphere: Traceable {
-	public var center: float3
-	public var radius: Float
+	public var center: double3
+	public var radius: Double
 	private var material: Material
 	
 	public override init() {
-		center = float3()
+		center = double3()
 		radius = 0
-		material = LambertianMaterial(albedo: ConstantTexture(color: float3(0.5, 0.5, 0.5)))
+		material = LambertianMaterial(albedo: ConstantTexture(color: double3(0.5, 0.5, 0.5)))
 	}
 	
-	public init(center c: float3, radius r: Float, material m: Material) {
+	public init(center c: double3, radius r: Double, material m: Material) {
 		center = c
 		radius = r
 		material = m
 	}
 	
-	public override func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+	public override func trace(r: Ray, minimumT tMin: Double, maximumT tMax: Double) -> HitRecord? {
 		var rec = HitRecord()
 		rec.material = material
 		let oc = r.origin - center
@@ -52,7 +52,7 @@ public class Sphere: Traceable {
 		return nil
 	}
 	
-	public override func boundingBox(t0: Float, t1: Float) -> AABB? {
-		return AABB(min: center - float3(radius, radius, radius), max: center + float3(radius, radius, radius))
+	public override func boundingBox(t0: Double, t1: Double) -> AABB? {
+		return AABB(min: center - double3(radius, radius, radius), max: center + double3(radius, radius, radius))
 	}
 }

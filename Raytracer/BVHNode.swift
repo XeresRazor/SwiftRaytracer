@@ -14,7 +14,7 @@ public class BVHNode: Traceable {
 	public var right: Traceable
 	public var box: AABB
 	
-	public init(list l: [Traceable], time0: Float, time1: Float) {
+	public init(list l: [Traceable], time0: Double, time1: Double) {
         var list = l
 		let axis = Int(3 * drand48())
 		
@@ -79,7 +79,7 @@ public class BVHNode: Traceable {
 		box = surroundingBox(boxLeft!, box1: boxRight!)
 	}
 	
-	public override func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+	public override func trace(r: Ray, minimumT tMin: Double, maximumT tMax: Double) -> HitRecord? {
 		if box.hit(ray: r, tMin: tMin, tMax: tMax) {
 			let leftRec = left.trace(r, minimumT: tMin, maximumT: tMax)
 			let rightRec = right.trace(r, minimumT: tMin, maximumT: tMax)
@@ -101,7 +101,7 @@ public class BVHNode: Traceable {
 		}
 	}
 	
-	public override func boundingBox(t0: Float, t1: Float) -> AABB? {
+	public override func boundingBox(t0: Double, t1: Double) -> AABB? {
 		return box
 	}
 }

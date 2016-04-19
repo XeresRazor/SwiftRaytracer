@@ -9,17 +9,17 @@
 import simd
 
 public struct HitRecord {
-	var time: Float
-	var point: float3
-	var normal: float3
+	var time: Double
+	var point: double3
+	var normal: double3
 	var material: Material?
 	init() {
 		time = 0
-		point = float3()
-		normal = float3()
+		point = double3()
+		normal = double3()
 	}
 	
-	init(_ t: Float, _ p: float3, _ n: float3) {
+	init(_ t: Double, _ p: double3, _ n: double3) {
 		time = t
 		point = p
 		normal = n
@@ -27,11 +27,11 @@ public struct HitRecord {
 }
 
 public class Traceable {
-	public func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+	public func trace(r: Ray, minimumT tMin: Double, maximumT tMax: Double) -> HitRecord? {
 		fatalError("trace() must be overridden")
 	}
 	
-	public func boundingBox(t0: Float, t1: Float) -> AABB? {
+	public func boundingBox(t0: Double, t1: Double) -> AABB? {
 		fatalError("boundingBox() must be overridden")
 	}
 }

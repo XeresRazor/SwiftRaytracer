@@ -9,14 +9,14 @@
 import simd
 
 public class MovingSphere: Traceable {
-	private var center0: float3
-	private var center1: float3
-	private var time0: Float
-	private var time1: Float
-	private var radius: Float
+	private var center0: double3
+	private var center1: double3
+	private var time0: Double
+	private var time1: Double
+	private var radius: Double
 	private var material: Material
 	
-	public init(center0 cen0: float3, center1 cen1: float3, time0 t0: Float, time1 t1: Float, radius r: Float, material m: Material) {
+	public init(center0 cen0: double3, center1 cen1: double3, time0 t0: Double, time1 t1: Double, radius r: Double, material m: Material) {
 		center0 = cen0
 		center1 = cen1
 		time0 = t0
@@ -25,11 +25,11 @@ public class MovingSphere: Traceable {
 		material = m
 	}
 	
-	public func center(time: Float) -> float3 {
+	public func center(time: Double) -> double3 {
 		return mix(center0, center1, t: time)
 	}
 	
-	public override func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+	public override func trace(r: Ray, minimumT tMin: Double, maximumT tMax: Double) -> HitRecord? {
 		let cen = center(r.time)
 		var rec = HitRecord()
 		rec.material = material
@@ -58,9 +58,9 @@ public class MovingSphere: Traceable {
 
 	}
 	
-	public override func boundingBox(t0: Float, t1: Float) -> AABB? {
-		let box0 = AABB(min: center0 - float3(radius, radius, radius), max: center0 + float3(radius, radius, radius))
-		let box1 = AABB(min: center1 - float3(radius, radius, radius), max: center1 + float3(radius, radius, radius))
+	public override func boundingBox(t0: Double, t1: Double) -> AABB? {
+		let box0 = AABB(min: center0 - double3(radius, radius, radius), max: center0 + double3(radius, radius, radius))
+		let box1 = AABB(min: center1 - double3(radius, radius, radius), max: center1 + double3(radius, radius, radius))
 		return surroundingBox(box0, box1: box1)
 	}
 }

@@ -19,7 +19,7 @@ public class TraceableCollection: Traceable {
 		list = l
 	}
 	
-	public override func trace(r: Ray, minimumT tMin: Float, maximumT tMax: Float) -> HitRecord? {
+	public override func trace(r: Ray, minimumT tMin: Double, maximumT tMax: Double) -> HitRecord? {
 		var rec = HitRecord()
 		var hitAnything = false
 		var closest = tMax

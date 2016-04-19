@@ -10,7 +10,7 @@ import Foundation
 import simd
 
 public class Texture {
-	public func value(u: Float, v: Float, point: float3) -> float3 {
+	public func value(u: Double, v: Double, point: double3) -> double3 {
 		fatalError("value() must be overridden")
 	}
 }

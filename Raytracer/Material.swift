@@ -9,7 +9,7 @@
 import simd
 
 public class Material {
-	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: float3, scattered: Ray)? {
+	public func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: double3, scattered: Ray)? {
 		fatalError("scatter() must be overridden.")
 	}
 }

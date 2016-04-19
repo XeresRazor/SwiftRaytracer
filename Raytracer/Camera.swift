@@ -8,31 +8,31 @@
 
 import simd
 
-func randomInUnitDisc() -> float3 {
-	var p = float3()
+func randomInUnitDisc() -> double3 {
+	var p = double3()
 	repeat {
-		p = 2.0 * float3(Float(drand48()), Float(drand48()), 0) - float3(1,1,0)
+		p = 2.0 * double3(drand48(), drand48(), 0) - double3(1,1,0)
 	} while dot(p, p) >= 1.0
 	return p
 }
 
 public struct Camera {
-	private var origin: float3
-	private var lowerLeftCorner: float3
-	private var horizontal: float3
-	private var vertical: float3
-	private var u: float3
-	private var v: float3
-	private var w: float3
-	private var time0: Float
-	private var time1: Float
-	private var lensRadius: Float
+	private var origin: double3
+	private var lowerLeftCorner: double3
+	private var horizontal: double3
+	private var vertical: double3
+	private var u: double3
+	private var v: double3
+	private var w: double3
+	private var time0: Double
+	private var time1: Double
+	private var lensRadius: Double
 		
-	public init(lookFrom: float3, lookAt: float3, up: float3, verticalFOV: Float, aspect: Float, aperture: Float, focusDistance: Float, time0 t0: Float, time1 t1: Float) {
+	public init(lookFrom: double3, lookAt: double3, up: double3, verticalFOV: Double, aspect: Double, aperture: Double, focusDistance: Double, time0 t0: Double, time1 t1: Double) {
 		time0 = t0
 		time1 = t1
 		lensRadius = aperture / 2
-		let theta = verticalFOV * Float(M_PI)/180.0
+		let theta = verticalFOV * M_PI / 180.0
 		let halfHeight = tan(theta / 2)
 		let halfWidth = aspect * halfHeight
 		
@@ -46,10 +46,10 @@ public struct Camera {
 		vertical = 2 * halfHeight * focusDistance * v
 	}
 	
-	public func getRay(s: Float, _ t: Float) -> Ray {
+	public func getRay(s: Double, _ t: Double) -> Ray {
 		let rd = lensRadius * randomInUnitDisc()
 		let offset = u * rd.x + v * rd.y
-		let time = time0 + Float(drand48()) * (time1 - time0)
+		let time = time0 + drand48() * (time1 - time0)
 		return Ray(origin: origin + offset, direction: lowerLeftCorner + s * horizontal + t * vertical - origin - offset, time: time)
 	}
 	

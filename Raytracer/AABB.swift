@@ -10,15 +10,15 @@ import simd
 
 
 public class AABB {
-	private(set) public var minimum: float3
-	private(set) public var maximum: float3
+	private(set) public var minimum: double3
+	private(set) public var maximum: double3
 	
-	public init(min n: float3, max x: float3) {
+	public init(min n: double3, max x: double3) {
 		minimum = n
 		maximum = x
 	}
 	
-	public func hit(ray r: Ray, var tMin: Float, var tMax: Float) -> Bool {
+	public func hit(ray r: Ray, var tMin: Double, var tMax: Double) -> Bool {
 		for a in 0 ..< 3 {
 			let invD = 1.0 / r.direction[a]
 			var t0 = (minimum[a] - r.origin[a]) * invD

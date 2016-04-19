@@ -22,7 +22,7 @@ let t1 = CFAbsoluteTimeGetCurrent()
 
 print("Beginning render")
 
-let image = Raytrace(scene) { image in
+let image = Raytrace(scene, previewFrequency: 5.0) { image in
 	image.writeTo("previewImage.png", format: .png)
 }
 
