@@ -11,26 +11,26 @@ import simd
 
 public class DielectricMaterial: Material {
 	public var indexOfRefraction: Double
-    public var attenuation: double3
+    public var attenuation: double4
     public var fuzziness: Double
     
 	init(refractionIndex: Double) {
 		indexOfRefraction = refractionIndex
-        attenuation = double3(1.0, 1.0, 1.0)
+        attenuation = double4(1.0, 1.0, 1.0, 1.0)
         fuzziness = 0
 	}
     
-    init(refractionIndex: Double, color: double3, fuzziness f: Double) {
+    init(refractionIndex: Double, color: double4, fuzziness f: Double) {
         indexOfRefraction = refractionIndex
         attenuation = color
         fuzziness = f
     }
 	
-	public override func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: double3, scattered: Ray)? {
-		var outwardNormal: double3
+	public override func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: double4, scattered: Ray)? {
+		var outwardNormal: double4
 		let reflected = reflect(rayIn.direction, n: rec.normal)
 		var niOverNt: Double
-		var refracted: double3
+		var refracted: double4
 		var reflectionProbability: Double
 		var cosine: Double
 		
@@ -47,7 +47,7 @@ public class DielectricMaterial: Material {
 		refracted = refract(rayIn.direction, n: outwardNormal, eta: niOverNt)
 		
 		var scattered: Ray
-		let zero = double3()
+		let zero = double4()
 		
 		if refracted.x != zero.x && refracted.y != zero.y && refracted.z != zero.z {
 //			scattered = Ray(origin: rec.point, direction: refracted)

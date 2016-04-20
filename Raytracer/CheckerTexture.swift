@@ -18,7 +18,7 @@ public class CheckerTexture: Texture {
 		odd = t1
 	}
 	
-	public override func value(u: Double, v: Double, point: double3) -> double3 {
+	public override func value(u: Double, v: Double, point: double4) -> double4 {
 		let sines = sin(10 * point.x) * sin(10 * point.y) * sin(10 * point.z)
 		if sines < 0 {
 			return odd.value(u, v: v, point: point)

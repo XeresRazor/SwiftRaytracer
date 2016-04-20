@@ -8,22 +8,22 @@
 
 import simd
 
-func randomInUnitDisc() -> double3 {
-	var p = double3()
+func randomInUnitDisc() -> double4 {
+	var p = double4()
 	repeat {
-		p = 2.0 * double3(drand48(), drand48(), 0) - double3(1,1,0)
+		p = 2.0 * double4(drand48(), drand48(), 0, 0) - double4(1,1,0, 0)
 	} while dot(p, p) >= 1.0
 	return p
 }
 
 public struct Camera {
-	private var origin: double3
-	private var lowerLeftCorner: double3
-	private var horizontal: double3
-	private var vertical: double3
-	private var u: double3
-	private var v: double3
-	private var w: double3
+	private var origin: double4
+	private var lowerLeftCorner: double4
+	private var horizontal: double4
+	private var vertical: double4
+	private var u: double4
+	private var v: double4
+	private var w: double4
 	private var time0: Double
 	private var time1: Double
 	private var lensRadius: Double
@@ -36,10 +36,15 @@ public struct Camera {
 		let halfHeight = tan(theta / 2)
 		let halfWidth = aspect * halfHeight
 		
-		origin = lookFrom
-		w = normalize(lookFrom - lookAt)
-		u = normalize(cross(up, w))
-		v = cross(w, u)
+		let originTemp = lookFrom
+		let wTemp = normalize(lookFrom - lookAt)
+		let uTemp = normalize(cross(up, wTemp))
+		let vTemp = cross(wTemp, uTemp)
+		
+		origin = double4(originTemp.x, originTemp.y, originTemp.z, 0.0)
+		w = double4(wTemp.x, wTemp.y, wTemp.z, 0.0)
+		u = double4(uTemp.x, uTemp.y, uTemp.z, 0.0)
+		v = double4(vTemp.x, vTemp.y, vTemp.z, 0.0)
 		
 		lowerLeftCorner = origin - halfWidth * focusDistance * u - halfHeight * focusDistance * v - focusDistance * w
 		horizontal = 2 * halfWidth * focusDistance * u

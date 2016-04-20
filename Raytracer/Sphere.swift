@@ -9,17 +9,17 @@
 import simd
 
 public class Sphere: Traceable {
-	public var center: double3
+	public var center: double4
 	public var radius: Double
 	private var material: Material
 	
 	public override init() {
-		center = double3()
+		center = double4()
 		radius = 0
-		material = LambertianMaterial(albedo: ConstantTexture(color: double3(0.5, 0.5, 0.5)))
+		material = LambertianMaterial(albedo: ConstantTexture(color: double4(0.5, 0.5, 0.5, 0)))
 	}
 	
-	public init(center c: double3, radius r: Double, material m: Material) {
+	public init(center c: double4, radius r: Double, material m: Material) {
 		center = c
 		radius = r
 		material = m
@@ -53,6 +53,6 @@ public class Sphere: Traceable {
 	}
 	
 	public override func boundingBox(t0: Double, t1: Double) -> AABB? {
-		return AABB(min: center - double3(radius, radius, radius), max: center + double3(radius, radius, radius))
+		return AABB(min: center - double4(radius, radius, radius, 0), max: center + double4(radius, radius, radius, 0))
 	}
 }

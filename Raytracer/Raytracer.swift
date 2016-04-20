@@ -11,21 +11,21 @@ import simd
 
 let maxDepth = 50
 
-private func colorForSkyDirection(direction: double3) -> double3 {
+private func colorForSkyDirection(direction: double4) -> double4 {
 	let unitDirection = normalize(direction)
 	let t = 0.5 * (unitDirection.y + 1.0)
-	let white = double3(1.0, 1.0, 1.0)
-	let blue = double3(0.5, 0.7, 1.0)
+	let white = double4(1.0, 1.0, 1.0, 1.0)
+	let blue = double4(0.5, 0.7, 1.0, 1.0)
 	return mix(white, blue, t: t)
 }
 
-private func color(r: Ray, world: Traceable, depth: Int) -> double3 {
+private func color(r: Ray, world: Traceable, depth: Int) -> double4 {
 	if let rec = world.trace(r, minimumT: 0.001, maximumT: 50000.0) {
 		let scatter = rec.material?.scatter(r, rec: rec)
 		if depth < maxDepth && scatter != nil  {
 			return scatter!.attenuation * color(scatter!.scattered, world: world, depth: depth + 1)
 		} else {
-			return double3(0.0, 0.0, 0.0)
+			return double4(0.0, 0.0, 0.0, 1.0)
 		}
 	} else {
 		return colorForSkyDirection(r.direction)
@@ -34,7 +34,7 @@ private func color(r: Ray, world: Traceable, depth: Int) -> double3 {
 
 public typealias PreviewCallback = (RGBA8Image) -> Void
 
-private func ImageFromPixels(pixels: [double3], samples: Int, width: Int, height: Int) -> RGBA8Image {
+private func ImageFromPixels(pixels: [double4], samples: Int, width: Int, height: Int) -> RGBA8Image {
 	let image = RGBA8Image(width: width, height: height)
 	
 	for y in 0 ..< height {
@@ -58,7 +58,7 @@ public func Raytrace(scene: Scene, previewFrequency: Double = 1.0, previewCallba
 	let height = scene.config.height
 	
 	let pixelCount = width * height
-	var pixels = [double3](count: pixelCount, repeatedValue: double3(0.0, 0.0, 0.0))
+	var pixels = [double4](count: pixelCount, repeatedValue: double4(0.0, 0.0, 0.0, 0))
 	
 	var lastCallbackTime = CFAbsoluteTimeGetCurrent()
 	

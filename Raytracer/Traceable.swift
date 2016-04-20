@@ -10,16 +10,16 @@ import simd
 
 public struct HitRecord {
 	var time: Double
-	var point: double3
-	var normal: double3
+	var point: double4
+	var normal: double4
 	var material: Material?
 	init() {
 		time = 0
-		point = double3()
-		normal = double3()
+		point = double4()
+		normal = double4()
 	}
 	
-	init(_ t: Double, _ p: double3, _ n: double3) {
+	init(_ t: Double, _ p: double4, _ n: double4) {
 		time = t
 		point = p
 		normal = n

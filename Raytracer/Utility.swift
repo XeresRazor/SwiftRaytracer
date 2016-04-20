@@ -9,10 +9,10 @@
 import Foundation
 import simd
 
-public func randomInUnitSphere() -> double3 {
-	var p: double3
+public func randomInUnitSphere() -> double4 {
+	var p: double4
 	repeat {
-		p = 2.0 * double3(drand48(), drand48(), drand48()) - double3(1.0, 1.0, 1.0)
+		p = 2.0 * double4(drand48(), drand48(), drand48(), 0) - double4(1.0, 1.0, 1.0, 0)
 	} while length_squared(p) >= 1.0
 	
 	return p

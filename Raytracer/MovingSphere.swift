@@ -9,14 +9,14 @@
 import simd
 
 public class MovingSphere: Traceable {
-	private var center0: double3
-	private var center1: double3
+	private var center0: double4
+	private var center1: double4
 	private var time0: Double
 	private var time1: Double
 	private var radius: Double
 	private var material: Material
 	
-	public init(center0 cen0: double3, center1 cen1: double3, time0 t0: Double, time1 t1: Double, radius r: Double, material m: Material) {
+	public init(center0 cen0: double4, center1 cen1: double4, time0 t0: Double, time1 t1: Double, radius r: Double, material m: Material) {
 		center0 = cen0
 		center1 = cen1
 		time0 = t0
@@ -25,7 +25,7 @@ public class MovingSphere: Traceable {
 		material = m
 	}
 	
-	public func center(time: Double) -> double3 {
+	public func center(time: Double) -> double4 {
 		return mix(center0, center1, t: time)
 	}
 	
@@ -59,8 +59,8 @@ public class MovingSphere: Traceable {
 	}
 	
 	public override func boundingBox(t0: Double, t1: Double) -> AABB? {
-		let box0 = AABB(min: center0 - double3(radius, radius, radius), max: center0 + double3(radius, radius, radius))
-		let box1 = AABB(min: center1 - double3(radius, radius, radius), max: center1 + double3(radius, radius, radius))
+		let box0 = AABB(min: center0 - double4(radius, radius, radius, 0), max: center0 + double4(radius, radius, radius, 0))
+		let box1 = AABB(min: center1 - double4(radius, radius, radius, 0), max: center1 + double4(radius, radius, radius, 0))
 		return surroundingBox(box0, box1: box1)
 	}
 }

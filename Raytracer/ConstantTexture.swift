@@ -10,13 +10,13 @@ import Foundation
 import simd
 
 public class ConstantTexture: Texture {
-	private(set) public var color: double3
+	private(set) public var color: double4
 	
-	public init(color c: double3) {
+	public init(color c: double4) {
 		color = c
 	}
 	
-	public override func value(u: Double, v: Double, point: double3) -> double3 {
+	public override func value(u: Double, v: Double, point: double4) -> double4 {
 		return color
 	}
 }

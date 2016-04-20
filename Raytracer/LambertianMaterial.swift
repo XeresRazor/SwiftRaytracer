@@ -16,7 +16,7 @@ public class LambertianMaterial: Material {
 		albedo = a
 	}
 	
-	public override func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: double3, scattered: Ray)? {
+	public override func scatter(rayIn: Ray, rec: HitRecord) -> (attenuation: double4, scattered: Ray)? {
 		let target = rec.point + rec.normal + randomInUnitSphere()
 		let scattered = Ray(origin: rec.point, direction: target - rec.point, time: rayIn.time)
 		let attenuation = albedo.value(0, v: 0, point: rec.point)

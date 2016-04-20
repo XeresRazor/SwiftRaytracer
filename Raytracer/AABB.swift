@@ -10,10 +10,10 @@ import simd
 
 
 public class AABB {
-	private(set) public var minimum: double3
-	private(set) public var maximum: double3
+	private(set) public var minimum: double4
+	private(set) public var maximum: double4
 	
-	public init(min n: double3, max x: double3) {
+	public init(min n: double4, max x: double4) {
 		minimum = n
 		maximum = x
 	}
