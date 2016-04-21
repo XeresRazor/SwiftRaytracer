@@ -27,9 +27,9 @@ func twoPerlinSpheres() -> Scene {
 	let focusDistance = 10.0
 	
 	// Render configuration
-	let width = 640
-	let height = 360
-	let samples = 1024
+	let width = 50
+	let height = 50
+	let samples = 100000
 	
 	let aspect = Double(width) / Double(height)
 	

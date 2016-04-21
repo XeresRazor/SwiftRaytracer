@@ -67,8 +67,11 @@ public func Raytrace(scene: Scene, previewFrequency: Double = 1.0, previewCallba
 	var lastCallbackTime = CFAbsoluteTimeGetCurrent()
 	
 	var lastLuminance: Double = 0.0
+	var targetLuminanceCount = 0
 	
+	var processedSamples = 0
 	for s in 0 ..< scene.config.samples {
+		processedSamples += 1
 		let time = CFAbsoluteTimeGetCurrent()
 		let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 		dispatch_apply(height, queue) { y in
@@ -95,6 +98,16 @@ public func Raytrace(scene: Scene, previewFrequency: Double = 1.0, previewCallba
 		let totalLuminance = Double(ImageFromPixels(pixels, samples: scene.config.samples, width: width, height: height).pixels.reduce(0, combine: pixelAccumulation)) / Double(width * height)
 		print(String(format: "Rendered sample \(s + 1) of \(scene.config.samples) in %0.4f seconds.\tChange in luminance: %0.5f", endTime - time, totalLuminance - lastLuminance))
 
+		if totalLuminance - lastLuminance <= scene.config.targetQuality {
+			targetLuminanceCount += 1
+			if targetLuminanceCount > 5 {
+				print("Target quality reached.")
+				break
+			}
+		} else {
+			targetLuminanceCount = 0
+		}
+		
 		lastLuminance = totalLuminance
 		
 		
@@ -102,5 +115,5 @@ public func Raytrace(scene: Scene, previewFrequency: Double = 1.0, previewCallba
 	
 	
 	
-	return ImageFromPixels(pixels, samples: scene.config.samples, width: width, height: height)
+	return ImageFromPixels(pixels, samples: processedSamples, width: width, height: height)
 }

@@ -14,6 +14,14 @@ public struct RenderConfig {
 	public var width: Int
 	public var height: Int
 	public var samples: Int
+	public var targetQuality: Double
+	
+	public init(width w: Int, height h: Int, samples s: Int, targetQuality q: Double = 0.01) {
+		width = w
+		height = h
+		samples = s
+		targetQuality = q
+	}
 }
 
 public class Scene {
