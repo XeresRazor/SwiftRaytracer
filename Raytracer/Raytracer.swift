@@ -66,7 +66,7 @@ public func Raytrace(scene: Scene, previewFrequency: Double = 1.0, previewCallba
 	
 	var lastCallbackTime = CFAbsoluteTimeGetCurrent()
 	
-	var lastLuminance: Int64 = 0
+	var lastLuminance: Double = 0.0
 	
 	for s in 0 ..< scene.config.samples {
 		let time = CFAbsoluteTimeGetCurrent()
@@ -92,8 +92,8 @@ public func Raytrace(scene: Scene, previewFrequency: Double = 1.0, previewCallba
 			}
 		}
 		
-		let totalLuminance = ImageFromPixels(pixels, samples: scene.config.samples, width: width, height: height).pixels.reduce(0, combine: pixelAccumulation)
-		print(String(format: "Rendered sample \(s + 1) of \(scene.config.samples) in %0.4f seconds.\tChange in luminance: \(totalLuminance - lastLuminance)", endTime - time))
+		let totalLuminance = Double(ImageFromPixels(pixels, samples: scene.config.samples, width: width, height: height).pixels.reduce(0, combine: pixelAccumulation)) / Double(width * height)
+		print(String(format: "Rendered sample \(s + 1) of \(scene.config.samples) in %0.4f seconds.\tChange in luminance: %0.5f", endTime - time, totalLuminance - lastLuminance))
 
 		lastLuminance = totalLuminance
 		
