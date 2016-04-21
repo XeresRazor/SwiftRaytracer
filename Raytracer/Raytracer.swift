@@ -41,11 +41,11 @@ private func ImageFromPixels(pixels: [double4], samples: Int, width: Int, height
 		for x in 0 ..< width {
 			// Convert from accumulator to pixels
 			var col = pixels[x + y * width]
-			col.x = sqrt(col.x / Double(samples + 1))
-			col.y = sqrt(col.y / Double(samples + 1))
-			col.z = sqrt(col.z / Double(samples + 1))
+			col.x = col.x / Double(samples + 1)
+			col.y = col.y / Double(samples + 1)
+			col.z = col.z / Double(samples + 1)
 			
-			let pixel = RGBA8Pixel(UInt8(255.0 * col.x), UInt8(255.0 * col.y), UInt8(255.0 * col.z))
+			let pixel = RGBA8Pixel(toUInt8(col.x), toUInt8(col.y), toUInt8(col.z))
 			image[x,height - y - 1] = pixel // Our image is rendered bottom to top, but image files expect top to bottom
 		}
 	}
@@ -53,14 +53,20 @@ private func ImageFromPixels(pixels: [double4], samples: Int, width: Int, height
 	return image
 }
 
+func pixelAccumulation(accumulator: Int64, current: RGBA8Pixel) -> Int64 {
+	return accumulator + Int64(current.r) + Int64(current.g) + Int64(current.b)
+}
+
 public func Raytrace(scene: Scene, previewFrequency: Double = 1.0, previewCallback: PreviewCallback? = nil) -> RGBA8Image {
 	let width = scene.config.width
 	let height = scene.config.height
 	
 	let pixelCount = width * height
-	var pixels = [double4](count: pixelCount, repeatedValue: double4(0.0, 0.0, 0.0, 0))
+	var pixels = [double4](count: pixelCount, repeatedValue: double4(0.0, 0.0, 0.0, 0.0))
 	
 	var lastCallbackTime = CFAbsoluteTimeGetCurrent()
+	
+	var lastLuminance: Int64 = 0
 	
 	for s in 0 ..< scene.config.samples {
 		let time = CFAbsoluteTimeGetCurrent()
@@ -72,6 +78,7 @@ public func Raytrace(scene: Scene, previewFrequency: Double = 1.0, previewCallba
 				let r = scene.camera.getRay(u, v)
 				
 				let col = color(r, world: scene.world, depth: 0)
+				
 				pixels[x + y * width] += col
 			}
 		}
@@ -85,8 +92,15 @@ public func Raytrace(scene: Scene, previewFrequency: Double = 1.0, previewCallba
 			}
 		}
 		
-		print("Rendered sample \(s + 1) of \(scene.config.samples) in \(endTime - time) seconds.")
+		let totalLuminance = ImageFromPixels(pixels, samples: scene.config.samples, width: width, height: height).pixels.reduce(0, combine: pixelAccumulation)
+		print(String(format: "Rendered sample \(s + 1) of \(scene.config.samples) in %0.4f seconds.\tChange in luminance: \(totalLuminance - lastLuminance)", endTime - time))
+
+		lastLuminance = totalLuminance
+		
+		
 	}
+	
+	
 	
 	return ImageFromPixels(pixels, samples: scene.config.samples, width: width, height: height)
 }

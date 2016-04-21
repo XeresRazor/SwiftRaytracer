@@ -9,6 +9,37 @@
 import Foundation
 import simd
 
+func twoPerlinSpheres() -> Scene {
+	let perlinTexture = NoiseTexture(scale: 4.0)
+	let lambert = LambertianMaterial(albedo: perlinTexture)
+	var list = [Traceable]()
+	
+	list.append(Sphere(center: double4(0, -1000, 0, 0), radius: 1000, material: lambert))
+	list.append(Sphere(center: double4(0, 2, 0, 0), radius: 2, material: lambert))
+	
+	let world = BVHNode(list: list, time0: 0.0, time1: 1.0)
+	
+	let up = double3(0,1,0)
+	let lookfrom = double3(13,2,3)
+	let lookAt = double3(0,0,0)
+	let fov = 20.0
+	let aperture = 0.0
+	let focusDistance = 10.0
+	
+	// Render configuration
+	let width = 640
+	let height = 360
+	let samples = 1024
+	
+	let aspect = Double(width) / Double(height)
+	
+	let cam = Camera(lookFrom: lookfrom, lookAt: lookAt, up: up, verticalFOV: fov, aspect: aspect, aperture: aperture, focusDistance: focusDistance, time0: 0.0, time1: 1.0)
+	
+	let renderConfig = RenderConfig(width: width, height: height, samples: samples)
+	
+	return Scene(world: world, camera: cam, config: renderConfig)
+}
+
 func generateFractalSpheresAroundSphere(parentSphere: Sphere, level: Int, maxLevel: Int, material0: Material, material1: Material, inout intoList: [Traceable]) {
 	if level < maxLevel {
 		let material = level % 2 == 0 ? material0 : material1

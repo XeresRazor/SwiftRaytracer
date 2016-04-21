@@ -29,3 +29,15 @@ public func surroundingBox(box0: AABB, box1: AABB) -> AABB {
 	let big = max(box0.maximum, box1.maximum)
 	return AABB(min: small, max: big)
 }
+
+public func clamp(x: Double) -> Double {
+	return x < 0 ? 0 : x > 1 ? 1 : x
+}
+
+public func toUInt8(x: Double) -> UInt8 {
+	let clampX = clamp(x)
+	let powX = pow(clampX, 1.0/2.2)
+	let temp = floor(powX * 255 + 0.5)
+	let value = UInt8(temp)
+	return value
+}

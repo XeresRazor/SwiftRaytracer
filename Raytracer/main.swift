@@ -15,8 +15,10 @@ print("Initializing Renderer.")
 let t0 = CFAbsoluteTimeGetCurrent()
 
 // Scene creation
-//let world = fractalScene()
-let scene = randomScene()
+//let scene = fractalScene()
+//let scene = randomScene()
+let scene = twoPerlinSpheres()
+
 
 let t1 = CFAbsoluteTimeGetCurrent()
 
