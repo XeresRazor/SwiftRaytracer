@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		D33976C71CD0153100335A9D /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		D33976CA1CD0153100335A9D /* AABB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AABB.swift; sourceTree = "<group>"; };
+		D33976CB1CD0153100335A9D /* BVHNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BVHNode.swift; sourceTree = "<group>"; };
+		D33976CC1CD0153100335A9D /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		D33976CD1CD0153100335A9D /* CheckerTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerTexture.swift; sourceTree = "<group>"; };
+		D33976CE1CD0153100335A9D /* ConstantTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantTexture.swift; sourceTree = "<group>"; };
+		D33976CF1CD0153100335A9D /* DielectricMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DielectricMaterial.swift; sourceTree = "<group>"; };
+		D33976D01CD0153100335A9D /* DiffuseLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffuseLight.swift; sourceTree = "<group>"; };
+		D33976D11CD0153100335A9D /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		D33976D21CD0153100335A9D /* LambertianMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LambertianMaterial.swift; sourceTree = "<group>"; };
+		D33976D31CD0153100335A9D /* Material.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Material.swift; sourceTree = "<group>"; };
+		D33976D41CD0153100335A9D /* MetalMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalMaterial.swift; sourceTree = "<group>"; };
+		D33976D51CD0153100335A9D /* MovingSphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingSphere.swift; sourceTree = "<group>"; };
+		D33976D61CD0153100335A9D /* NoiseTexture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseTexture.swift; sourceTree = "<group>"; };
+		D33976D71CD0153100335A9D /* Perlin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perlin.swift; sourceTree = "<group>"; };
+		D33976D81CD0153100335A9D /* Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
+		D33976D91CD0153100335A9D /* Raytracer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Raytracer.swift; sourceTree = "<group>"; };
+		D33976DB1CD0153100335A9D /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		D33976DC1CD0153100335A9D /* SkyShader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyShader.swift; sourceTree = "<group>"; };
+		D33976DD1CD0153100335A9D /* Sphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sphere.swift; sourceTree = "<group>"; };
+		D33976DE1CD0153100335A9D /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
+		D33976DF1CD0153100335A9D /* Traceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Traceable.swift; sourceTree = "<group>"; };
+		D33976E01CD0153100335A9D /* TraceableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceableCollection.swift; sourceTree = "<group>"; };
+		D33976E11CD0153100335A9D /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		D33976E31CD0153100335A9D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D33976E71CD0153100335A9D /* stb_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		D33976E81CD0153100335A9D /* stb_image_write.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
+		D33976E91CD0153100335A9D /* stb_image.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stb_image.c; sourceTree = "<group>"; };
+		D33976EA1CD0153100335A9D /* stb_image_write.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = stb_image_write.c; sourceTree = "<group>"; };
+		D33976EB1CD0155400335A9D /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		D388A2881CD021E000633780 /* SampleScenes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleScenes.swift; sourceTree = "<group>"; };
+		D388A2891CD024CF00633780 /* previewImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = previewImage.png; path = .build/release/previewImage.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		D33976BC1CD014A600335A9D = {
+			isa = PBXGroup;
+			children = (
+				D388A2891CD024CF00633780 /* previewImage.png */,
+				D33976EB1CD0155400335A9D /* Makefile */,
+				D33976C71CD0153100335A9D /* Package.swift */,
+				D33976C81CD0153100335A9D /* src */,
+			);
+			sourceTree = "<group>";
+		};
+		D33976C81CD0153100335A9D /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D33976C91CD0153100335A9D /* pathtracer */,
+				D33976E21CD0153100335A9D /* renderer */,
+				D33976E41CD0153100335A9D /* stbi */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D33976C91CD0153100335A9D /* pathtracer */ = {
+			isa = PBXGroup;
+			children = (
+				D33976CA1CD0153100335A9D /* AABB.swift */,
+				D33976CB1CD0153100335A9D /* BVHNode.swift */,
+				D33976CC1CD0153100335A9D /* Camera.swift */,
+				D33976CD1CD0153100335A9D /* CheckerTexture.swift */,
+				D33976CE1CD0153100335A9D /* ConstantTexture.swift */,
+				D33976CF1CD0153100335A9D /* DielectricMaterial.swift */,
+				D33976D01CD0153100335A9D /* DiffuseLight.swift */,
+				D33976D11CD0153100335A9D /* Image.swift */,
+				D33976D21CD0153100335A9D /* LambertianMaterial.swift */,
+				D33976D31CD0153100335A9D /* Material.swift */,
+				D33976D41CD0153100335A9D /* MetalMaterial.swift */,
+				D33976D51CD0153100335A9D /* MovingSphere.swift */,
+				D33976D61CD0153100335A9D /* NoiseTexture.swift */,
+				D33976D71CD0153100335A9D /* Perlin.swift */,
+				D33976D81CD0153100335A9D /* Ray.swift */,
+				D33976D91CD0153100335A9D /* Raytracer.swift */,
+				D33976DB1CD0153100335A9D /* Scene.swift */,
+				D33976DC1CD0153100335A9D /* SkyShader.swift */,
+				D33976DD1CD0153100335A9D /* Sphere.swift */,
+				D33976DE1CD0153100335A9D /* Texture.swift */,
+				D33976DF1CD0153100335A9D /* Traceable.swift */,
+				D33976E01CD0153100335A9D /* TraceableCollection.swift */,
+				D33976E11CD0153100335A9D /* Utility.swift */,
+			);
+			path = pathtracer;
+			sourceTree = "<group>";
+		};
+		D33976E21CD0153100335A9D /* renderer */ = {
+			isa = PBXGroup;
+			children = (
+				D33976E31CD0153100335A9D /* main.swift */,
+				D388A2881CD021E000633780 /* SampleScenes.swift */,
+			);
+			path = renderer;
+			sourceTree = "<group>";
+		};
+		D33976E41CD0153100335A9D /* stbi */ = {
+			isa = PBXGroup;
+			children = (
+				D33976E51CD0153100335A9D /* include */,
+				D33976E91CD0153100335A9D /* stb_image.c */,
+				D33976EA1CD0153100335A9D /* stb_image_write.c */,
+			);
+			path = stbi;
+			sourceTree = "<group>";
+		};
+		D33976E51CD0153100335A9D /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D33976E61CD0153100335A9D /* stbi */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D33976E61CD0153100335A9D /* stbi */ = {
+			isa = PBXGroup;
+			children = (
+				D33976E71CD0153100335A9D /* stb_image.h */,
+				D33976E81CD0153100335A9D /* stb_image_write.h */,
+			);
+			path = stbi;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		D33976C31CD0150200335A9D /* Pathtracer-SPM */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = D33976C41CD0150200335A9D /* Build configuration list for PBXLegacyTarget "Pathtracer-SPM" */;
+			buildPhases = (
+			);
+			buildToolPath = make;
+			buildWorkingDirectory = "$(SRCROOT)";
+			dependencies = (
+			);
+			name = "Pathtracer-SPM";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Pathtracer-SPM";
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		D33976BD1CD014A600335A9D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				TargetAttributes = {
+					D33976C31CD0150200335A9D = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = D33976C01CD014A600335A9D /* Build configuration list for PBXProject "Pathtracer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D33976BC1CD014A600335A9D;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D33976C31CD0150200335A9D /* Pathtracer-SPM */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		D33976C11CD014A600335A9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		D33976C21CD014A600335A9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		D33976C51CD0150200335A9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D33976C61CD0150200335A9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D33976C01CD014A600335A9D /* Build configuration list for PBXProject "Pathtracer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D33976C11CD014A600335A9D /* Debug */,
+				D33976C21CD014A600335A9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D33976C41CD0150200335A9D /* Build configuration list for PBXLegacyTarget "Pathtracer-SPM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D33976C51CD0150200335A9D /* Debug */,
+				D33976C61CD0150200335A9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D33976BD1CD014A600335A9D /* Project object */;
+}
